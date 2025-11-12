@@ -9,6 +9,7 @@ interface Message {
 function App() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [userInput, setUserInput] = useState<string>('');
+  const [isProcessing, setIsProcessing] = useState<boolean>(false);
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     setUserInput(e.target.value);
@@ -21,6 +22,7 @@ function App() {
     const newMessages = [...messages, { sender: 'user', text: userInput }];
     setMessages(newMessages);
     setUserInput('');
+    setIsProcessing(true); // disable user-input while waiting
 
     try {
       const response = await fetch('http://localhost:8000/', {
@@ -31,7 +33,7 @@ function App() {
         },
         body: JSON.stringify({ user_input: userInput }),
       });
-      
+
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
@@ -45,13 +47,14 @@ function App() {
         : { sender: 'bot', text: 'Sorry, something went wrong.' };
 
       setMessages([...newMessages, botMessage]);
-      setUserInput('');
     } catch (error) {
       console.error('Upload failed:', error);
       setMessages([
         ...newMessages,
         { sender: 'bot', text: 'Error connecting to the server.' },
       ]);
+    } finally{
+      setIsProcessing(false); // re-enable user-input
     }
   };
 
@@ -60,28 +63,29 @@ function App() {
   };
 
   return (
-    <>
+    <div className="chatbot-container">
       <h1 id='title'>Chat with bainiAi</h1>
-      <div className="chatbot-container">
-        <div className="chatbot-messages">
-          {messages.map((message, index) => (
-            <div key={index} className={`message ${message.sender}`}>
-              {message.text}
-            </div>
-          ))}
-        </div>
-        <div className="chatbot-input-area">
-          <input
-            type="text"
-            value={userInput}
-            onChange={handleInputChange}
-            onKeyPress={handleKeyPress}
-            placeholder="Type your message..."
-          />
-          <button onClick={handleSendMessage}>Send</button>
-        </div>
+      <div className="chatbot-messages">
+        {messages.map((message, index) => (
+          <div key={index} className={`message ${message.sender}`}>
+            {message.text}
+          </div>
+        ))}
       </div>
-    </>
+      <div className="chatbot-input-area">
+        <input
+          type="text"
+          value={userInput}
+          onChange={handleInputChange}
+          onKeyPress={handleKeyPress}
+          placeholder={isProcessing ? "Please wait..." : "Type your message..."}
+          disabled={isProcessing}
+        />
+        <button onClick={handleSendMessage} disabled={isProcessing}>
+          Send
+        </button>
+      </div>
+    </div>
   );
 }
 
