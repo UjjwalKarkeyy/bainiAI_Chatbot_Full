@@ -1,4 +1,4 @@
-# slim means lighweight version of py 3.10
+# slim means lighweight version of py 3.12
 FROM python:3.12-slim 
 
 # curr dir is working dir
