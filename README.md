@@ -12,16 +12,16 @@ It answers only company-related questions based on internal documents and can al
 <h2>Screenshots (Project Demonstration)</h2>
 
 <p><strong>1. Chatbot answering a valid company-related question:</strong></p>
-<p><img src="INSERT_IMAGE_1_HERE" width="600"></p>
+<p><img src="assets/bainiAI_answer_company_pic.png" width="600"></p>
 
 <p><strong>2. Chatbot declining unrelated questions:</strong></p>
-<p><img src="INSERT_IMAGE_2_HERE" width="600"></p>
+<p><img src="assets/bainiai_irrelevant_questions_pic.png" width="600"></p>
 
 <p><strong>3. Chatbot gathering appointment details (natural-language form):</strong></p>
-<p><img src="INSERT_APPOINTMENT_FORM_IMAGE_HERE" width="600"></p>
+<p><img src="assets/bainiai_appointment_book_chat_pic.png" width="600"></p>
 
 <p><strong>4. Excel sheet showing successfully saved appointment:</strong></p>
-<p><img src="INSERT_EXCEL_SHEET_IMAGE_HERE" width="600"></p>
+<p><img src="assets/bainiai_appointment_book_excel_pic.png" width="600"></p>
 
 <hr>
 
