@@ -167,7 +167,7 @@ Company-Specific Answer
 <p>
 bainiAI is fully containerized.  
 Both frontend and backend have Dockerfiles, and the built images are pushed to Docker Hub.
-<a href="https://hub.docker.com/repository/docker/ujjwalkarkeyy/bainiai/general">DockerHub Link</a>
+<a href="https://hub.docker.com/repository/docker/ujjwalkarkeyy/bainiai/general" target="_blank">DockerHub Link</a>
 </p>
 
 <ul>
